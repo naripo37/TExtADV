@@ -1,0 +1,126 @@
+[gd_scene load_steps=13 format=3 uid="uid://dnwwmcqyd0ysh"]
+
+[ext_resource type="Script" path="res://Input.gd" id="1_de5nv"]
+[ext_resource type="Script" path="res://game.gd" id="1_qhrkq"]
+[ext_resource type="PackedScene" uid="uid://bev7cmxfr42ra" path="res://input_response.tscn" id="2_5kmve"]
+[ext_resource type="Script" path="res://scripts/CommandProcessor.gd" id="2_ntf0c"]
+[ext_resource type="Theme" uid="uid://c5nicttgoorvd" path="res://assets/01-theme.tres" id="4_2njgs"]
+[ext_resource type="Shader" path="res://game.gdshader" id="5_13agx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4pty"]
+bg_color = Color(0.811765, 0.815686, 0.823529, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njjb0"]
+bg_color = Color(0.0627451, 0.0784314, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia6mu"]
+bg_color = Color(0.0431373, 0, 0.803922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfxe6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gy3ol"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqprs"]
+shader = ExtResource("5_13agx")
+shader_parameter/wiggle = 0.03
+shader_parameter/wiggle_speed = 25.0
+shader_parameter/smear = 1.0
+shader_parameter/blur_samples = 15
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qhrkq")
+
+[node name="CommandProcessor" type="Node" parent="."]
+script = ExtResource("2_ntf0c")
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l4pty")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 2
+theme = ExtResource("4_2njgs")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Rows" type="VBoxContainer" parent="Background/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GameInfo" type="PanelContainer" parent="Background/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_njjb0")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/MarginContainer/Rows/GameInfo"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Scroll" type="ScrollContainer" parent="Background/MarginContainer/Rows/GameInfo/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="HistoryRows" type="VBoxContainer" parent="Background/MarginContainer/Rows/GameInfo/MarginContainer/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="InputResponse" parent="Background/MarginContainer/Rows/GameInfo/MarginContainer/Scroll/HistoryRows" instance=ExtResource("2_5kmve")]
+layout_mode = 2
+
+[node name="InputArea" type="PanelContainer" parent="Background/MarginContainer/Rows"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ia6mu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/Rows/InputArea"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = " > "
+
+[node name="Input" type="LineEdit" parent="Background/MarginContainer/Rows/InputArea/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_2njgs")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_vfxe6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gy3ol")
+max_length = 50
+clear_button_enabled = true
+caret_blink = true
+script = ExtResource("1_de5nv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_lqprs")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="." method="_on_input_text_submitted"]
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" to="Background/MarginContainer/Rows/InputArea/HBoxContainer/Input" method="_on_text_submitted"]

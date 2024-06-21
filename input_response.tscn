@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bev7cmxfr42ra"]
+
+[ext_resource type="Script" path="res://scripts/input_response.gd" id="1_2ykxy"]
+[ext_resource type="PackedScene" uid="uid://ba4l6va7ylf8c" path="res://scense/input_history.tscn" id="2_gdan6"]
+[ext_resource type="PackedScene" uid="uid://moqt4xt20tol" path="res://scense/response.tscn" id="3_6llog"]
+[ext_resource type="Theme" uid="uid://c5nicttgoorvd" path="res://assets/01-theme.tres" id="3_q78jg"]
+
+[node name="InputResponse" type="VBoxContainer"]
+script = ExtResource("1_2ykxy")
+
+[node name="InputHistory" parent="." instance=ExtResource("2_gdan6")]
+layout_mode = 2
+theme = ExtResource("3_q78jg")
+text = ""
+autowrap_mode = 2
+
+[node name="Response" parent="." instance=ExtResource("3_6llog")]
+layout_mode = 2
+autowrap_mode = 2
+text_direction = 1

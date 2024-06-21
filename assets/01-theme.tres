@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c5nicttgoorvd"]
+
+[ext_resource type="FontFile" uid="uid://dxbvqyfosplqh" path="res://assets/fonts/slavisilva.ttf" id="1_3m2by"]
+
+[resource]
+default_font = ExtResource("1_3m2by")

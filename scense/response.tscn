@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://moqt4xt20tol"]
+
+[ext_resource type="Theme" uid="uid://c5nicttgoorvd" path="res://assets/01-theme.tres" id="1_oseyu"]
+
+[node name="Response" type="Label"]
+theme = ExtResource("1_oseyu")
+theme_override_font_sizes/font_size = 32
+autowrap_mode = 2

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba4l6va7ylf8c"]
+
+[ext_resource type="FontFile" uid="uid://ywpblxgiwcmn" path="res://assets/Ac437_Cordata_PPC-400.ttf" id="1_d3pu5"]
+
+[node name="InputHistory" type="Label"]
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_d3pu5")
+theme_override_font_sizes/font_size = 20
+text = " // This is what user said"
