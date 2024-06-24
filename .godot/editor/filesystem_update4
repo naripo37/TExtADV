@@ -5,3 +5,6 @@ res://crt.gdshader
 res://scense/response.tscn
 res://game.tscn
 res://game.gd
+res://scense/room.tscn
+res://scripts/room.gd
+res://scripts/CommandProcessor.gd

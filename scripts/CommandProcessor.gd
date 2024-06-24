@@ -1,7 +1,12 @@
 extends Node
 
 
-# Called when the node enters the scene tree for the first time.
+var current_room = null
+
+func initialize(starting_room):
+	current_room = starting_room
+
+
 func process_command(input:String) -> String:
 	var words = input.split(" ",false)
 	if words.size() == 0:

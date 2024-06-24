@@ -1,11 +1,11 @@
+Label
+VBoxContainer
+MarginContainer
+PanelContainer
 Node
 VScrollBar
-MarginContainer
 ColorRect
 CanvasLayer
 ScrollContainer
-Label
-VBoxContainer
 HBoxContainer
 LineEdit
-PanelContainer

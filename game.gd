@@ -9,8 +9,10 @@ const Respons = preload("res://scense/response.tscn") as PackedScene
 @onready var scroll: ScrollContainer = $Background/MarginContainer/Rows/GameInfo/MarginContainer/Scroll
 @onready var scroll_bar = scroll.get_v_scroll_bar()
 @onready var command_processor: Node = $CommandProcessor
+@onready var room_manager: Node = $RoomManager
 
 var max_scroll_lenght:=0
+
 
 
 func _ready() -> void:
@@ -19,6 +21,7 @@ func _ready() -> void:
 	var starting_message = Respons.instantiate()
 	starting_message.text = " you wakeup to find your self in a crumbiling house with no memoreis how you get in there "
 	add_response_to_game(starting_message)
+	command_processor.initialize(room_manager.get_child(0))
 
 
 func handle_scrollbar_changed():

@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dnwwmcqyd0ysh"]
+[gd_scene load_steps=14 format=3 uid="uid://dnwwmcqyd0ysh"]
 
 [ext_resource type="Script" path="res://Input.gd" id="1_de5nv"]
 [ext_resource type="Script" path="res://game.gd" id="1_qhrkq"]
 [ext_resource type="PackedScene" uid="uid://bev7cmxfr42ra" path="res://input_response.tscn" id="2_5kmve"]
+[ext_resource type="PackedScene" uid="uid://c3j81gsbph785" path="res://scense/room.tscn" id="2_iq3ph"]
 [ext_resource type="Script" path="res://scripts/CommandProcessor.gd" id="2_ntf0c"]
 [ext_resource type="Theme" uid="uid://c5nicttgoorvd" path="res://assets/01-theme.tres" id="4_2njgs"]
 [ext_resource type="Shader" path="res://game.gdshader" id="5_13agx"]
@@ -36,6 +37,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qhrkq")
+
+[node name="RoomManager" type="Node" parent="."]
+
+[node name="HouseRoom" parent="RoomManager" instance=ExtResource("2_iq3ph")]
+room_name = "house"
 
 [node name="CommandProcessor" type="Node" parent="."]
 script = ExtResource("2_ntf0c")

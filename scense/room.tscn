@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3j81gsbph785"]
+
+[ext_resource type="Script" path="res://scripts/room.gd" id="1_uvf5l"]
+
+[node name="Room" type="PanelContainer"]
+custom_minimum_size = Vector2(250, 100)
+offset_right = 250.0
+offset_bottom = 200.0
+size_flags_horizontal = 4
+script = ExtResource("1_uvf5l")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Rows" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="RoomName" type="Label" parent="MarginContainer/Rows"]
+layout_mode = 2
+text = "Rome name"
+
+[node name="RomeDIscription" type="Label" parent="MarginContainer/Rows"]
+layout_mode = 2
+text = "this is the discription of the room"
+autowrap_mode = 2
